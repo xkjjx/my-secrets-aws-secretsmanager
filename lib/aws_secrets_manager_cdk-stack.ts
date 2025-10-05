@@ -5,12 +5,24 @@ import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { parse } from 'dotenv';
 
+const EXPECTED_ENV_KEYS: ReadonlySet<string> = new Set(['GOOGLE_API_KEY']);
+
 export class AwsSecretsManagerCdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const envVars = readEnvFile();
-    for (const [key, value] of Object.entries(envVars)) {
+    const missing: string[] = [];
+    for (const key of EXPECTED_ENV_KEYS) {
+      if (!(key in envVars)) missing.push(key);
+    }
+    if (missing.length > 0) {
+      throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
+    }
+
+    for (const key of EXPECTED_ENV_KEYS) {
+      const value = envVars[key];
+      if (value === undefined) continue;
       new Secret(this, toSafeConstructId(key), {
         secretName: `keys/${toKebabFromEnvKey(key)}`,
         secretStringValue: SecretValue.unsafePlainText(String(value)),
