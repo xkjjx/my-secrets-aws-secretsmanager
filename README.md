@@ -1,14 +1,7 @@
-# Welcome to your CDK TypeScript project
+# Easy Way to Manage Secrets in One Place
 
-This is a blank project for CDK development with TypeScript.
+Fix to the problem of copying environment variables around for mutiple projects.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Simply define them here and access them from anywhere as long as you have AWS credentials.
 
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+Furthermore, if host on AWS, you can just give your AWS environment permission to access them.
