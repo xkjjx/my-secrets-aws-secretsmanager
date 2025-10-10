@@ -5,7 +5,15 @@ import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { parse } from 'dotenv';
 
-const EXPECTED_ENV_KEYS: ReadonlySet<string> = new Set(['GOOGLE_API_KEY']);
+const EXPECTED_ENV_KEYS: ReadonlySet<string> = new Set([
+  'GOOGLE_API_KEY',
+  'NEWS_VISUALIZER_X_API_KEY',
+  'NEWS_VISUALIZER_X_API_SECRET',
+  'NEWS_VISUALIZER_X_ACCESS_TOKEN',
+  'NEWS_VISUALIZER_X_ACCESS_TOKEN_SECRET',
+  'NEWS_VISUALIZER_X_CLIENT_ID',
+  'NEWS_VISUALIZER_X_CLIENT_SECRET',
+]);
 
 export class AwsSecretsManagerCdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
