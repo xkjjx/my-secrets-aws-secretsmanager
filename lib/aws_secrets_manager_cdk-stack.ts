@@ -13,6 +13,7 @@ const EXPECTED_ENV_KEYS: ReadonlySet<string> = new Set([
   'NEWS_VISUALIZER_X_ACCESS_TOKEN_SECRET',
   'NEWS_VISUALIZER_X_CLIENT_ID',
   'NEWS_VISUALIZER_X_CLIENT_SECRET',
+  'CONGRESSDOTGOV_API_KEY'
 ]);
 
 export class AwsSecretsManagerCdkStack extends Stack {
